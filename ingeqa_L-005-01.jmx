@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="3.2" jmeter="3.3 r1808647">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Testplan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Benutzer definierte Variablen" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Public search (150) without bots" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Schleifen-Controller (Loop Controller)" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">15</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1484915528000</longProp>
+        <longProp name="ThreadGroup.end_time">1484915528000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Average search think time" enabled="true">
+          <stringProp name="ConstantTimer.delay">6000</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">qa.inge.mpdl.mpg.de/</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout">2400</stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="fingertip (small)" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">pubman/faces/SearchResultListPage.jsp?esq=%7B%0A++%22bool%22+%3A+%7B%0A++++%22should%22+%3A+%5B%0A++++++%7B%0A++++++++%22match%22+%3A+%7B%0A++++++++++%22_all%22+%3A+%7B%0A++++++++++++%22query%22+%3A+%22fingertip%22%2C%0A++++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++++%22fuzzy_transpositions%22+%3A+true%2C%0A++++++++++++%22lenient%22+%3A+false%2C%0A++++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++++%22boost%22+%3A+1.0%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%2C%0A++++++%7B%0A++++++++%22multi_match%22+%3A+%7B%0A++++++++++%22query%22+%3A+%22fingertip%22%2C%0A++++++++++%22fields%22+%3A+%5B%0A++++++++++++%22identifiers.id%5E1.0%22%2C%0A++++++++++++%22pid%5E1.0%22%2C%0A++++++++++++%22version.objectId%5E1.0%22%2C%0A++++++++++++%22version.pid%5E1.0%22%0A++++++++++%5D%2C%0A++++++++++%22type%22+%3A+%22best_fields%22%2C%0A++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++%22slop%22+%3A+0%2C%0A++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++%22lenient%22+%3A+false%2C%0A++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++%22boost%22+%3A+1.0%0A++++++++%7D%0A++++++%7D%0A++++%5D%2C%0A++++%22disable_coord%22+%3A+false%2C%0A++++%22adjust_pure_negative%22+%3A+true%2C%0A++++%22boost%22+%3A+1.0%0A++%7D%0A%7D</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="grau (small)" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">pubman/faces/SearchResultListPage.jsp?esq=%7B%0A++%22bool%22+%3A+%7B%0A++++%22should%22+%3A+%5B%0A++++++%7B%0A++++++++%22match%22+%3A+%7B%0A++++++++++%22_all%22+%3A+%7B%0A++++++++++++%22query%22+%3A+%22grau%22%2C%0A++++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++++%22fuzzy_transpositions%22+%3A+true%2C%0A++++++++++++%22lenient%22+%3A+false%2C%0A++++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++++%22boost%22+%3A+1.0%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%2C%0A++++++%7B%0A++++++++%22multi_match%22+%3A+%7B%0A++++++++++%22query%22+%3A+%22grau%22%2C%0A++++++++++%22fields%22+%3A+%5B%0A++++++++++++%22identifiers.id%5E1.0%22%2C%0A++++++++++++%22pid%5E1.0%22%2C%0A++++++++++++%22version.objectId%5E1.0%22%2C%0A++++++++++++%22version.pid%5E1.0%22%0A++++++++++%5D%2C%0A++++++++++%22type%22+%3A+%22best_fields%22%2C%0A++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++%22slop%22+%3A+0%2C%0A++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++%22lenient%22+%3A+false%2C%0A++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++%22boost%22+%3A+1.0%0A++++++++%7D%0A++++++%7D%0A++++%5D%2C%0A++++%22disable_coord%22+%3A+false%2C%0A++++%22adjust_pure_negative%22+%3A+true%2C%0A++++%22boost%22+%3A+1.0%0A++%7D%0A%7D</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="tief (small)" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">pubman/faces/SearchResultListPage.jsp?esq=%7B%0A++%22bool%22+%3A+%7B%0A++++%22should%22+%3A+%5B%0A++++++%7B%0A++++++++%22match%22+%3A+%7B%0A++++++++++%22_all%22+%3A+%7B%0A++++++++++++%22query%22+%3A+%22tief%22%2C%0A++++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++++%22fuzzy_transpositions%22+%3A+true%2C%0A++++++++++++%22lenient%22+%3A+false%2C%0A++++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++++%22boost%22+%3A+1.0%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%2C%0A++++++%7B%0A++++++++%22multi_match%22+%3A+%7B%0A++++++++++%22query%22+%3A+%22tief%22%2C%0A++++++++++%22fields%22+%3A+%5B%0A++++++++++++%22identifiers.id%5E1.0%22%2C%0A++++++++++++%22pid%5E1.0%22%2C%0A++++++++++++%22version.objectId%5E1.0%22%2C%0A++++++++++++%22version.pid%5E1.0%22%0A++++++++++%5D%2C%0A++++++++++%22type%22+%3A+%22best_fields%22%2C%0A++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++%22slop%22+%3A+0%2C%0A++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++%22lenient%22+%3A+false%2C%0A++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++%22boost%22+%3A+1.0%0A++++++++%7D%0A++++++%7D%0A++++%5D%2C%0A++++%22disable_coord%22+%3A+false%2C%0A++++%22adjust_pure_negative%22+%3A+true%2C%0A++++%22boost%22+%3A+1.0%0A++%7D%0A%7D</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="schulden (small)" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">pubman/faces/SearchResultListPage.jsp?esq=%7B%0A++%22bool%22+%3A+%7B%0A++++%22should%22+%3A+%5B%0A++++++%7B%0A++++++++%22match%22+%3A+%7B%0A++++++++++%22_all%22+%3A+%7B%0A++++++++++++%22query%22+%3A+%22schulden%22%2C%0A++++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++++%22fuzzy_transpositions%22+%3A+true%2C%0A++++++++++++%22lenient%22+%3A+false%2C%0A++++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++++%22boost%22+%3A+1.0%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%2C%0A++++++%7B%0A++++++++%22multi_match%22+%3A+%7B%0A++++++++++%22query%22+%3A+%22schulden%22%2C%0A++++++++++%22fields%22+%3A+%5B%0A++++++++++++%22identifiers.id%5E1.0%22%2C%0A++++++++++++%22pid%5E1.0%22%2C%0A++++++++++++%22version.objectId%5E1.0%22%2C%0A++++++++++++%22version.pid%5E1.0%22%0A++++++++++%5D%2C%0A++++++++++%22type%22+%3A+%22best_fields%22%2C%0A++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++%22slop%22+%3A+0%2C%0A++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++%22lenient%22+%3A+false%2C%0A++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++%22boost%22+%3A+1.0%0A++++++++%7D%0A++++++%7D%0A++++%5D%2C%0A++++%22disable_coord%22+%3A+false%2C%0A++++%22adjust_pure_negative%22+%3A+true%2C%0A++++%22boost%22+%3A+1.0%0A++%7D%0A%7D</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="fenster (small)" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">pubman/faces/SearchResultListPage.jsp?esq=%7B%0A++%22bool%22+%3A+%7B%0A++++%22should%22+%3A+%5B%0A++++++%7B%0A++++++++%22match%22+%3A+%7B%0A++++++++++%22_all%22+%3A+%7B%0A++++++++++++%22query%22+%3A+%22fenster%22%2C%0A++++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++++%22fuzzy_transpositions%22+%3A+true%2C%0A++++++++++++%22lenient%22+%3A+false%2C%0A++++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++++%22boost%22+%3A+1.0%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%2C%0A++++++%7B%0A++++++++%22multi_match%22+%3A+%7B%0A++++++++++%22query%22+%3A+%22fenster%22%2C%0A++++++++++%22fields%22+%3A+%5B%0A++++++++++++%22identifiers.id%5E1.0%22%2C%0A++++++++++++%22pid%5E1.0%22%2C%0A++++++++++++%22version.objectId%5E1.0%22%2C%0A++++++++++++%22version.pid%5E1.0%22%0A++++++++++%5D%2C%0A++++++++++%22type%22+%3A+%22best_fields%22%2C%0A++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++%22slop%22+%3A+0%2C%0A++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++%22lenient%22+%3A+false%2C%0A++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++%22boost%22+%3A+1.0%0A++++++++%7D%0A++++++%7D%0A++++%5D%2C%0A++++%22disable_coord%22+%3A+false%2C%0A++++%22adjust_pure_negative%22+%3A+true%2C%0A++++%22boost%22+%3A+1.0%0A++%7D%0A%7D</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Benutzer definierte Variablen" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">qa.inge.mpdl.mpg.de/</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout">4800</stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="ball (medium)" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">pubman/faces/SearchResultListPage.jsp?esq=%7B%0A++%22bool%22+%3A+%7B%0A++++%22should%22+%3A+%5B%0A++++++%7B%0A++++++++%22match%22+%3A+%7B%0A++++++++++%22_all%22+%3A+%7B%0A++++++++++++%22query%22+%3A+%22ball%22%2C%0A++++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++++%22fuzzy_transpositions%22+%3A+true%2C%0A++++++++++++%22lenient%22+%3A+false%2C%0A++++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++++%22boost%22+%3A+1.0%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%2C%0A++++++%7B%0A++++++++%22multi_match%22+%3A+%7B%0A++++++++++%22query%22+%3A+%22ball%22%2C%0A++++++++++%22fields%22+%3A+%5B%0A++++++++++++%22identifiers.id%5E1.0%22%2C%0A++++++++++++%22pid%5E1.0%22%2C%0A++++++++++++%22version.objectId%5E1.0%22%2C%0A++++++++++++%22version.pid%5E1.0%22%0A++++++++++%5D%2C%0A++++++++++%22type%22+%3A+%22best_fields%22%2C%0A++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++%22slop%22+%3A+0%2C%0A++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++%22lenient%22+%3A+false%2C%0A++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++%22boost%22+%3A+1.0%0A++++++++%7D%0A++++++%7D%0A++++%5D%2C%0A++++%22disable_coord%22+%3A+false%2C%0A++++%22adjust_pure_negative%22+%3A+true%2C%0A++++%22boost%22+%3A+1.0%0A++%7D%0A%7D</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="gehirn (medium)" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">pubman/faces/SearchResultListPage.jsp?esq=%7B%0A++%22bool%22+%3A+%7B%0A++++%22should%22+%3A+%5B%0A++++++%7B%0A++++++++%22match%22+%3A+%7B%0A++++++++++%22_all%22+%3A+%7B%0A++++++++++++%22query%22+%3A+%22gehirn%22%2C%0A++++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++++%22fuzzy_transpositions%22+%3A+true%2C%0A++++++++++++%22lenient%22+%3A+false%2C%0A++++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++++%22boost%22+%3A+1.0%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%2C%0A++++++%7B%0A++++++++%22multi_match%22+%3A+%7B%0A++++++++++%22query%22+%3A+%22gehirn%22%2C%0A++++++++++%22fields%22+%3A+%5B%0A++++++++++++%22identifiers.id%5E1.0%22%2C%0A++++++++++++%22pid%5E1.0%22%2C%0A++++++++++++%22version.objectId%5E1.0%22%2C%0A++++++++++++%22version.pid%5E1.0%22%0A++++++++++%5D%2C%0A++++++++++%22type%22+%3A+%22best_fields%22%2C%0A++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++%22slop%22+%3A+0%2C%0A++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++%22lenient%22+%3A+false%2C%0A++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++%22boost%22+%3A+1.0%0A++++++++%7D%0A++++++%7D%0A++++%5D%2C%0A++++%22disable_coord%22+%3A+false%2C%0A++++%22adjust_pure_negative%22+%3A+true%2C%0A++++%22boost%22+%3A+1.0%0A++%7D%0A%7D</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="weg (medium)" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">pubman/faces/SearchResultListPage.jsp?esq=%7B%0A++%22bool%22+%3A+%7B%0A++++%22should%22+%3A+%5B%0A++++++%7B%0A++++++++%22match%22+%3A+%7B%0A++++++++++%22_all%22+%3A+%7B%0A++++++++++++%22query%22+%3A+%22weg%22%2C%0A++++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++++%22fuzzy_transpositions%22+%3A+true%2C%0A++++++++++++%22lenient%22+%3A+false%2C%0A++++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++++%22boost%22+%3A+1.0%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%2C%0A++++++%7B%0A++++++++%22multi_match%22+%3A+%7B%0A++++++++++%22query%22+%3A+%22weg%22%2C%0A++++++++++%22fields%22+%3A+%5B%0A++++++++++++%22identifiers.id%5E1.0%22%2C%0A++++++++++++%22pid%5E1.0%22%2C%0A++++++++++++%22version.objectId%5E1.0%22%2C%0A++++++++++++%22version.pid%5E1.0%22%0A++++++++++%5D%2C%0A++++++++++%22type%22+%3A+%22best_fields%22%2C%0A++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++%22slop%22+%3A+0%2C%0A++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++%22lenient%22+%3A+false%2C%0A++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++%22boost%22+%3A+1.0%0A++++++++%7D%0A++++++%7D%0A++++%5D%2C%0A++++%22disable_coord%22+%3A+false%2C%0A++++%22adjust_pure_negative%22+%3A+true%2C%0A++++%22boost%22+%3A+1.0%0A++%7D%0A%7D</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="lernen (medium)" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">pubman/faces/SearchResultListPage.jsp?esq=%7B%0A++%22bool%22+%3A+%7B%0A++++%22should%22+%3A+%5B%0A++++++%7B%0A++++++++%22match%22+%3A+%7B%0A++++++++++%22_all%22+%3A+%7B%0A++++++++++++%22query%22+%3A+%22lernen%22%2C%0A++++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++++%22fuzzy_transpositions%22+%3A+true%2C%0A++++++++++++%22lenient%22+%3A+false%2C%0A++++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++++%22boost%22+%3A+1.0%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%2C%0A++++++%7B%0A++++++++%22multi_match%22+%3A+%7B%0A++++++++++%22query%22+%3A+%22lernen%22%2C%0A++++++++++%22fields%22+%3A+%5B%0A++++++++++++%22identifiers.id%5E1.0%22%2C%0A++++++++++++%22pid%5E1.0%22%2C%0A++++++++++++%22version.objectId%5E1.0%22%2C%0A++++++++++++%22version.pid%5E1.0%22%0A++++++++++%5D%2C%0A++++++++++%22type%22+%3A+%22best_fields%22%2C%0A++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++%22slop%22+%3A+0%2C%0A++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++%22lenient%22+%3A+false%2C%0A++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++%22boost%22+%3A+1.0%0A++++++++%7D%0A++++++%7D%0A++++%5D%2C%0A++++%22disable_coord%22+%3A+false%2C%0A++++%22adjust_pure_negative%22+%3A+true%2C%0A++++%22boost%22+%3A+1.0%0A++%7D%0A%7D</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hilfe (medium)" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">pubman/faces/SearchResultListPage.jsp?esq=%7B%0A++%22bool%22+%3A+%7B%0A++++%22should%22+%3A+%5B%0A++++++%7B%0A++++++++%22match%22+%3A+%7B%0A++++++++++%22_all%22+%3A+%7B%0A++++++++++++%22query%22+%3A+%22hilfe%22%2C%0A++++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++++%22fuzzy_transpositions%22+%3A+true%2C%0A++++++++++++%22lenient%22+%3A+false%2C%0A++++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++++%22boost%22+%3A+1.0%0A++++++++++%7D%0A++++++++%7D%0A++++++%7D%2C%0A++++++%7B%0A++++++++%22multi_match%22+%3A+%7B%0A++++++++++%22query%22+%3A+%22hilfe%22%2C%0A++++++++++%22fields%22+%3A+%5B%0A++++++++++++%22identifiers.id%5E1.0%22%2C%0A++++++++++++%22pid%5E1.0%22%2C%0A++++++++++++%22version.objectId%5E1.0%22%2C%0A++++++++++++%22version.pid%5E1.0%22%0A++++++++++%5D%2C%0A++++++++++%22type%22+%3A+%22best_fields%22%2C%0A++++++++++%22operator%22+%3A+%22OR%22%2C%0A++++++++++%22slop%22+%3A+0%2C%0A++++++++++%22prefix_length%22+%3A+0%2C%0A++++++++++%22max_expansions%22+%3A+50%2C%0A++++++++++%22lenient%22+%3A+false%2C%0A++++++++++%22zero_terms_query%22+%3A+%22NONE%22%2C%0A++++++++++%22boost%22+%3A+1.0%0A++++++++%7D%0A++++++%7D%0A++++%5D%2C%0A++++%22disable_coord%22+%3A+false%2C%0A++++%22adjust_pure_negative%22+%3A+true%2C%0A++++%22boost%22+%3A+1.0%0A++%7D%0A%7D</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="Zeige Ergebnisse in der Tabelle" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">ingeqa_L-005-01_${__time(dd-mm-yyyy_hhmmss)}.csv</stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+    <WorkBench guiclass="WorkBenchGui" testclass="WorkBench" testname="WorkBench" enabled="true">
+      <boolProp name="WorkBench.save">true</boolProp>
+    </WorkBench>
+    <hashTree/>
+  </hashTree>
+</jmeterTestPlan>
