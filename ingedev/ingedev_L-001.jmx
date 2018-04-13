@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="3.2" jmeter="3.3 r1808647">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Testplan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Benutzer definierte Variablen" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="SR without full text" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Schleifen-Controller (Loop Controller)" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">3</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1485155175000</longProp>
+        <longProp name="ThreadGroup.end_time">1485155175000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
+          <stringProp name="maximumValue">9999999</stringProp>
+          <stringProp name="minimumValue">1000000</stringProp>
+          <stringProp name="outputFormat"></stringProp>
+          <boolProp name="perThread">false</boolProp>
+          <stringProp name="randomSeed"></stringProp>
+          <stringProp name="variableName">random_stamp</stringProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="think_time" elementType="Argument">
+              <stringProp name="Argument.name">think_time</stringProp>
+              <stringProp name="Argument.value">2</stringProp>
+              <stringProp name="Argument.desc">seconds</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="import_timeout" elementType="Argument">
+              <stringProp name="Argument.name">import_timeout</stringProp>
+              <stringProp name="Argument.value">2500</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">milliseconds</stringProp>
+            </elementProp>
+            <elementProp name="release_timeout" elementType="Argument">
+              <stringProp name="Argument.name">release_timeout</stringProp>
+              <stringProp name="Argument.value">2500</stringProp>
+              <stringProp name="Argument.desc">milliseconds</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+          <stringProp name="TestPlan.comments">default: 2; 5; 5</stringProp>
+        </Arguments>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Submission 1 without bots" enabled="true">
+          <stringProp name="WebDriverSampler.script">var pkg = JavaImporter(org.openqa.selenium)
+var support_ui = JavaImporter(org.openqa.selenium.support.ui)
+var wait = new support_ui.WebDriverWait(WDS.browser, WDS.args[2])
+var lang = JavaImporter(java.lang)
+var conc = JavaImporter(java.util.concurrent)
+
+// important variables
+var testID = &apos;Submission of item without full text I: &apos;.concat(WDS.args[0])
+var importName = testID
+var thinkTime = WDS.args[1] * 1000;
+
+function think() {
+    lang.Thread.sleep(thinkTime)
+}
+
+WDS.browser.manage().timeouts().implicitlyWait(10, conc.TimeUnit.SECONDS)
+WDS.browser.manage().timeouts().pageLoadTimeout(60, conc.TimeUnit.SECONDS)
+WDS.browser.get(&apos;https://dev.inge.mpdl.mpg.de/pubman&apos;)
+think()
+
+//login
+var usernameBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputUsername&quot;)]&apos;))
+usernameBox.sendKeys(lang.System.getenv(&apos;DEVusername&apos;))
+think()
+
+var passwordBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputSecretPassword&quot;)]&apos;))
+passwordBox.sendKeys(lang.System.getenv(&apos;DEVpassword&apos;))
+think()
+
+var submit = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogin&quot;)]&apos;))
+submit.click()
+think()
+
+// go to submission
+var submission = WDS.browser.findElement(pkg.By.id(&apos;Header:lnkSubmission&apos;))
+submission.click()
+think()
+var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
+easySubmissionLink.click()
+think()
+var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
+contextLink.click()
+think()
+
+// fill in form (step 1)
+var dropdown = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:selGenre&apos;))
+var Select = Java.type(&apos;org.openqa.selenium.support.ui.Select&apos;)
+var formatSelect = new Select(dropdown)
+formatSelect.selectByValue(&apos;ARTICLE&apos;)
+think()
+
+var titleBox = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:inpItemMetadataTitle&apos;))
+titleBox.sendKeys(importName)
+think()
+
+var nextButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:lnkNext&apos;))
+nextButton.click()
+think()
+
+// fill in form (step 2)
+var authorFamilyBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;:0:inpcreator_persons_person_family_name_optional&quot;)]&apos;))
+authorFamilyBox.sendKeys(&apos;Testermann, Test&apos;)
+think()
+var organisationBox = WDS.browser.findElement(pkg.By.xpath(&apos;//textarea[contains(@id, &quot;:0:inporganizations_organization_name&quot;)]&apos;))
+organisationBox.sendKeys(&apos;MPDL&apos;)
+think()
+var orgNrBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;:0:inppersons_person_ous_optional&quot;)]&apos;))
+orgNrBox.sendKeys(&apos;1&apos;)
+think()
+
+var nextButton2 = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep2Manual:lnkNext&apos;))
+nextButton2.click()
+think()
+
+// fill in form (step 3)
+var dateBox = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:txtDatePublishedInPrint&apos;))
+dateBox.sendKeys(&apos;2017-01-01&apos;)
+think()
+
+var sourceDropdown = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:selSourceGenre&apos;))
+var sourceSelect = new Select(sourceDropdown)
+sourceSelect.selectByVisibleText(&apos;Book&apos;)
+think()
+var sourceName = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:inpSourceTitle&apos;))
+sourceName.sendKeys(&apos;Test Book&apos;)
+think()
+
+// in simple context submission is direct, no acceptance required
+var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+
+WDS.sampleResult.sampleStart()
+submitButton.click()
+WDS.sampleResult.sampleEnd()
+
+var logoutButton = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogout&quot;)]&apos;))
+logoutButton.click()
+
+var duration = WDS.sampleResult.getTime()
+WDS.log.info(&apos;Submit duration: &apos;.concat(duration))
+if (duration &gt;= WDS.args[2] * 120.0/100.0) {
+    WDS.sampleResult.setResponseMessage(&apos;Failure: submission duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+    WDS.sampleResult.setSuccessful(false)
+}
+else {
+    WDS.sampleResult.setResponseMessage(&apos;Success: submission duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+    WDS.sampleResult.setSuccessful(true)
+}</stringProp>
+          <stringProp name="WebDriverSampler.parameters">${random_stamp} ${think_time} ${import_timeout}</stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree>
+          <com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.FirefoxDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig" testname="jp@gc - Firefox Driver Config" enabled="true">
+            <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+            <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+            <stringProp name="WebDriverConfig.http_host"></stringProp>
+            <intProp name="WebDriverConfig.http_port">8080</intProp>
+            <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+            <stringProp name="WebDriverConfig.https_host"></stringProp>
+            <intProp name="WebDriverConfig.https_port">8080</intProp>
+            <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+            <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+            <stringProp name="WebDriverConfig.socks_host"></stringProp>
+            <intProp name="WebDriverConfig.socks_port">8080</intProp>
+            <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+            <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+            <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+            <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.general.useragent.override.enabled">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.network.negotiate-auth.allow-insecure-ntlm-v1">false</boolProp>
+            <collectionProp name="FirefoxDriverConfig.general.extensions"/>
+            <collectionProp name="FirefoxDriverConfig.general.preferences"/>
+          </com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig>
+          <hashTree/>
+        </hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Release 1 without bots" enabled="true">
+          <stringProp name="WebDriverSampler.script">var pkg = JavaImporter(org.openqa.selenium)
+var support_ui = JavaImporter(org.openqa.selenium.support.ui)
+var lang = JavaImporter(java.lang)
+var conc = JavaImporter(java.util.concurrent)
+
+// important variables
+var testID = &apos;Submission of item without full text I: &apos;.concat(WDS.args[0])
+var importName = testID
+var thinkTime = WDS.args[1] * 1000;
+
+function think() {
+    lang.Thread.sleep(thinkTime)
+}
+
+WDS.browser.manage().timeouts().implicitlyWait(10, conc.TimeUnit.SECONDS)
+WDS.browser.manage().timeouts().pageLoadTimeout(60, conc.TimeUnit.SECONDS)
+WDS.browser.get(&apos;https://dev.inge.mpdl.mpg.de/pubman&apos;)
+think()
+
+//login
+var usernameBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputUsername&quot;)]&apos;))
+usernameBox.sendKeys(lang.System.getenv(&apos;DEVusername&apos;))
+think()
+
+var passwordBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputSecretPassword&quot;)]&apos;))
+passwordBox.sendKeys(lang.System.getenv(&apos;DEVpassword&apos;))
+think()
+
+var submit = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogin&quot;)]&apos;))
+submit.click()
+think()
+
+// go to items
+var myItems = WDS.browser.findElement(pkg.By.id(&apos;Header:lnkDepWorkspace&apos;))
+myItems.click()
+think()
+
+// find submission
+var currentImport = null;
+var imports = WDS.browser.findElements(pkg.By.className(&apos;listItem&apos;));
+for (i = 0; i &lt; imports.size(); i++) {
+    var titleLink = imports[i].findElement(pkg.By.tagName(&apos;a&apos;));
+    if (titleLink.getText().equals(importName)) {    			
+        currentImport = imports[i];
+        break;
+    }
+}
+if (currentImport != null)
+    currentImport.findElement(pkg.By.tagName(&apos;a&apos;)).click()
+    
+var releaseButton = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkRelease&quot;)]&apos;))
+releaseButton.click()
+
+var commentBox = WDS.browser.findElement(pkg.By.tagName(&apos;textarea&apos;))
+commentBox.sendKeys(&apos;Load test&apos;)
+think()
+submitButton = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSave&quot;)]&apos;))
+
+WDS.sampleResult.sampleStart()
+submitButton.click()
+WDS.sampleResult.sampleEnd()
+
+var logoutButton = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogout&quot;)]&apos;))
+logoutButton.click()
+
+var duration = WDS.sampleResult.getTime()
+WDS.log.info(&apos;Release duration: &apos;.concat(duration))
+if (duration &gt;= WDS.args[2] * 120.0/100.0) {
+    WDS.sampleResult.setSuccessful(false)
+    WDS.sampleResult.setResponseMessage(&apos;Failure: release duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+}
+else {
+    WDS.sampleResult.setSuccessful(true)
+    WDS.sampleResult.setResponseMessage(&apos;Success: release duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+}</stringProp>
+          <stringProp name="WebDriverSampler.parameters">${random_stamp} ${think_time} ${release_timeout}</stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree>
+          <com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.FirefoxDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig" testname="jp@gc - Firefox Driver Config" enabled="true">
+            <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+            <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+            <stringProp name="WebDriverConfig.http_host"></stringProp>
+            <intProp name="WebDriverConfig.http_port">8080</intProp>
+            <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+            <stringProp name="WebDriverConfig.https_host"></stringProp>
+            <intProp name="WebDriverConfig.https_port">8080</intProp>
+            <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+            <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+            <stringProp name="WebDriverConfig.socks_host"></stringProp>
+            <intProp name="WebDriverConfig.socks_port">8080</intProp>
+            <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+            <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+            <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+            <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.general.useragent.override.enabled">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.network.negotiate-auth.allow-insecure-ntlm-v1">false</boolProp>
+            <collectionProp name="FirefoxDriverConfig.general.extensions"/>
+            <collectionProp name="FirefoxDriverConfig.general.preferences"/>
+          </com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig>
+          <hashTree/>
+        </hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Submission 2 without bots" enabled="true">
+          <stringProp name="WebDriverSampler.script">var pkg = JavaImporter(org.openqa.selenium)
+var support_ui = JavaImporter(org.openqa.selenium.support.ui)
+var wait = new support_ui.WebDriverWait(WDS.browser, WDS.args[2])
+var lang = JavaImporter(java.lang)
+var conc = JavaImporter(java.util.concurrent)
+
+// important variables
+var testID = &apos;Submission of item without full text I: &apos;.concat(WDS.args[0] + 1)
+var importName = testID
+var thinkTime = WDS.args[1] * 1000;
+
+function think() {
+    lang.Thread.sleep(thinkTime)
+}
+
+WDS.browser.manage().timeouts().implicitlyWait(10, conc.TimeUnit.SECONDS)
+WDS.browser.manage().timeouts().pageLoadTimeout(60, conc.TimeUnit.SECONDS)
+WDS.browser.get(&apos;https://dev.inge.mpdl.mpg.de/pubman&apos;)
+think()
+
+//login
+var usernameBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputUsername&quot;)]&apos;))
+usernameBox.sendKeys(lang.System.getenv(&apos;DEVusername&apos;))
+think()
+
+var passwordBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputSecretPassword&quot;)]&apos;))
+passwordBox.sendKeys(lang.System.getenv(&apos;DEVpassword&apos;))
+think()
+
+var submit = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogin&quot;)]&apos;))
+submit.click()
+think()
+
+// go to submission
+var submission = WDS.browser.findElement(pkg.By.id(&apos;Header:lnkSubmission&apos;))
+submission.click()
+think()
+var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
+easySubmissionLink.click()
+think()
+var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
+contextLink.click()
+think()
+
+// fill in form (step 1)
+var dropdown = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:selGenre&apos;))
+var Select = Java.type(&apos;org.openqa.selenium.support.ui.Select&apos;)
+var formatSelect = new Select(dropdown)
+formatSelect.selectByValue(&apos;ARTICLE&apos;)
+think()
+
+var titleBox = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:inpItemMetadataTitle&apos;))
+titleBox.sendKeys(importName)
+think()
+
+var nextButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:lnkNext&apos;))
+nextButton.click()
+think()
+
+// fill in form (step 2)
+var authorFamilyBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;:0:inpcreator_persons_person_family_name_optional&quot;)]&apos;))
+authorFamilyBox.sendKeys(&apos;Testermann, Test&apos;)
+think()
+var organisationBox = WDS.browser.findElement(pkg.By.xpath(&apos;//textarea[contains(@id, &quot;:0:inporganizations_organization_name&quot;)]&apos;))
+organisationBox.sendKeys(&apos;MPDL&apos;)
+think()
+var orgNrBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;:0:inppersons_person_ous_optional&quot;)]&apos;))
+orgNrBox.sendKeys(&apos;1&apos;)
+think()
+
+var nextButton2 = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep2Manual:lnkNext&apos;))
+nextButton2.click()
+think()
+
+// fill in form (step 3)
+var dateBox = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:txtDatePublishedInPrint&apos;))
+dateBox.sendKeys(&apos;2017-01-01&apos;)
+think()
+
+var sourceDropdown = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:selSourceGenre&apos;))
+var sourceSelect = new Select(sourceDropdown)
+sourceSelect.selectByVisibleText(&apos;Book&apos;)
+think()
+var sourceName = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:inpSourceTitle&apos;))
+sourceName.sendKeys(&apos;Test Book&apos;)
+think()
+
+// in simple context submission is direct, no acceptance required
+var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+
+WDS.sampleResult.sampleStart()
+submitButton.click()
+WDS.sampleResult.sampleEnd()
+
+var logoutButton = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogout&quot;)]&apos;))
+logoutButton.click()
+
+var duration = WDS.sampleResult.getTime()
+WDS.log.info(&apos;Submit duration: &apos;.concat(duration))
+if (duration &gt;= WDS.args[2] * 120.0/100.0) {
+    WDS.sampleResult.setResponseMessage(&apos;Failure: submission duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+    WDS.sampleResult.setSuccessful(false)
+}
+else {
+    WDS.sampleResult.setResponseMessage(&apos;Success: submission duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+    WDS.sampleResult.setSuccessful(true)
+}</stringProp>
+          <stringProp name="WebDriverSampler.parameters">${random_stamp} ${think_time} ${import_timeout}</stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree>
+          <com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.FirefoxDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig" testname="jp@gc - Firefox Driver Config" enabled="true">
+            <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+            <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+            <stringProp name="WebDriverConfig.http_host"></stringProp>
+            <intProp name="WebDriverConfig.http_port">8080</intProp>
+            <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+            <stringProp name="WebDriverConfig.https_host"></stringProp>
+            <intProp name="WebDriverConfig.https_port">8080</intProp>
+            <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+            <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+            <stringProp name="WebDriverConfig.socks_host"></stringProp>
+            <intProp name="WebDriverConfig.socks_port">8080</intProp>
+            <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+            <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+            <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+            <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.general.useragent.override.enabled">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.network.negotiate-auth.allow-insecure-ntlm-v1">false</boolProp>
+            <collectionProp name="FirefoxDriverConfig.general.extensions"/>
+            <collectionProp name="FirefoxDriverConfig.general.preferences"/>
+          </com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig>
+          <hashTree/>
+        </hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Release 2 without bots" enabled="true">
+          <stringProp name="WebDriverSampler.script">var pkg = JavaImporter(org.openqa.selenium)
+var support_ui = JavaImporter(org.openqa.selenium.support.ui)
+var lang = JavaImporter(java.lang)
+var conc = JavaImporter(java.util.concurrent)
+
+// important variables
+var testID = &apos;Submission of item without full text I: &apos;.concat(WDS.args[0] + 1)
+var importName = testID
+var thinkTime = WDS.args[1] * 1000;
+
+function think() {
+    lang.Thread.sleep(thinkTime)
+}
+
+WDS.browser.manage().timeouts().implicitlyWait(10, conc.TimeUnit.SECONDS)
+WDS.browser.manage().timeouts().pageLoadTimeout(60, conc.TimeUnit.SECONDS)
+WDS.browser.get(&apos;https://dev.inge.mpdl.mpg.de/pubman&apos;)
+think()
+
+//login
+var usernameBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputUsername&quot;)]&apos;))
+usernameBox.sendKeys(lang.System.getenv(&apos;DEVusername&apos;))
+think()
+
+var passwordBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputSecretPassword&quot;)]&apos;))
+passwordBox.sendKeys(lang.System.getenv(&apos;DEVpassword&apos;))
+think()
+
+var submit = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogin&quot;)]&apos;))
+submit.click()
+think()
+
+// go to items
+var myItems = WDS.browser.findElement(pkg.By.id(&apos;Header:lnkDepWorkspace&apos;))
+myItems.click()
+think()
+
+// find submission
+var currentImport = null;
+var imports = WDS.browser.findElements(pkg.By.className(&apos;listItem&apos;));
+for (i = 0; i &lt; imports.size(); i++) {
+    var titleLink = imports[i].findElement(pkg.By.tagName(&apos;a&apos;));
+    if (titleLink.getText().equals(importName)) {    			
+        currentImport = imports[i];
+        break;
+    }
+}
+if (currentImport != null)
+    currentImport.findElement(pkg.By.tagName(&apos;a&apos;)).click()
+    
+var releaseButton = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkRelease&quot;)]&apos;))
+releaseButton.click()
+
+var commentBox = WDS.browser.findElement(pkg.By.tagName(&apos;textarea&apos;))
+commentBox.sendKeys(&apos;Load test&apos;)
+think()
+submitButton = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSave&quot;)]&apos;))
+
+WDS.sampleResult.sampleStart()
+submitButton.click()
+WDS.sampleResult.sampleEnd()
+
+var logoutButton = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogout&quot;)]&apos;))
+logoutButton.click()
+
+var duration = WDS.sampleResult.getTime()
+WDS.log.info(&apos;Release duration: &apos;.concat(duration))
+if (duration &gt;= WDS.args[2] * 120.0/100.0) {
+    WDS.sampleResult.setSuccessful(false)
+    WDS.sampleResult.setResponseMessage(&apos;Failure: release duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+}
+else {
+    WDS.sampleResult.setSuccessful(true)
+    WDS.sampleResult.setResponseMessage(&apos;Success: release duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+}</stringProp>
+          <stringProp name="WebDriverSampler.parameters">${random_stamp} ${think_time} ${release_timeout}</stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree>
+          <com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.FirefoxDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig" testname="jp@gc - Firefox Driver Config" enabled="true">
+            <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+            <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+            <stringProp name="WebDriverConfig.http_host"></stringProp>
+            <intProp name="WebDriverConfig.http_port">8080</intProp>
+            <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+            <stringProp name="WebDriverConfig.https_host"></stringProp>
+            <intProp name="WebDriverConfig.https_port">8080</intProp>
+            <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+            <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+            <stringProp name="WebDriverConfig.socks_host"></stringProp>
+            <intProp name="WebDriverConfig.socks_port">8080</intProp>
+            <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+            <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+            <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+            <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.general.useragent.override.enabled">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.network.negotiate-auth.allow-insecure-ntlm-v1">false</boolProp>
+            <collectionProp name="FirefoxDriverConfig.general.extensions"/>
+            <collectionProp name="FirefoxDriverConfig.general.preferences"/>
+          </com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig>
+          <hashTree/>
+        </hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Submission 3 without bots" enabled="true">
+          <stringProp name="WebDriverSampler.script">var pkg = JavaImporter(org.openqa.selenium)
+var support_ui = JavaImporter(org.openqa.selenium.support.ui)
+var wait = new support_ui.WebDriverWait(WDS.browser, WDS.args[2])
+var lang = JavaImporter(java.lang)
+var conc = JavaImporter(java.util.concurrent)
+
+// important variables
+var testID = &apos;Submission of item without full text I: &apos;.concat(WDS.args[0] + 2)
+var importName = testID
+var thinkTime = WDS.args[1] * 1000;
+
+function think() {
+    lang.Thread.sleep(thinkTime)
+}
+
+WDS.browser.manage().timeouts().implicitlyWait(10, conc.TimeUnit.SECONDS)
+WDS.browser.manage().timeouts().pageLoadTimeout(60, conc.TimeUnit.SECONDS)
+WDS.browser.get(&apos;https://dev.inge.mpdl.mpg.de/pubman&apos;)
+think()
+
+//login
+var usernameBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputUsername&quot;)]&apos;))
+usernameBox.sendKeys(lang.System.getenv(&apos;DEVusername&apos;))
+think()
+
+var passwordBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputSecretPassword&quot;)]&apos;))
+passwordBox.sendKeys(lang.System.getenv(&apos;DEVpassword&apos;))
+think()
+
+var submit = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogin&quot;)]&apos;))
+submit.click()
+think()
+
+// go to submission
+var submission = WDS.browser.findElement(pkg.By.id(&apos;Header:lnkSubmission&apos;))
+submission.click()
+think()
+var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
+easySubmissionLink.click()
+think()
+var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
+contextLink.click()
+think()
+
+// fill in form (step 1)
+var dropdown = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:selGenre&apos;))
+var Select = Java.type(&apos;org.openqa.selenium.support.ui.Select&apos;)
+var formatSelect = new Select(dropdown)
+formatSelect.selectByValue(&apos;ARTICLE&apos;)
+think()
+
+var titleBox = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:inpItemMetadataTitle&apos;))
+titleBox.sendKeys(importName)
+think()
+
+var nextButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:lnkNext&apos;))
+nextButton.click()
+think()
+
+// fill in form (step 2)
+var authorFamilyBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;:0:inpcreator_persons_person_family_name_optional&quot;)]&apos;))
+authorFamilyBox.sendKeys(&apos;Testermann, Test&apos;)
+think()
+var organisationBox = WDS.browser.findElement(pkg.By.xpath(&apos;//textarea[contains(@id, &quot;:0:inporganizations_organization_name&quot;)]&apos;))
+organisationBox.sendKeys(&apos;MPDL&apos;)
+think()
+var orgNrBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;:0:inppersons_person_ous_optional&quot;)]&apos;))
+orgNrBox.sendKeys(&apos;1&apos;)
+think()
+
+var nextButton2 = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep2Manual:lnkNext&apos;))
+nextButton2.click()
+think()
+
+// fill in form (step 3)
+var dateBox = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:txtDatePublishedInPrint&apos;))
+dateBox.sendKeys(&apos;2017-01-01&apos;)
+think()
+
+var sourceDropdown = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:selSourceGenre&apos;))
+var sourceSelect = new Select(sourceDropdown)
+sourceSelect.selectByVisibleText(&apos;Book&apos;)
+think()
+var sourceName = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:inpSourceTitle&apos;))
+sourceName.sendKeys(&apos;Test Book&apos;)
+think()
+
+// in simple context submission is direct, no acceptance required
+var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+
+WDS.sampleResult.sampleStart()
+submitButton.click()
+WDS.sampleResult.sampleEnd()
+
+var logoutButton = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogout&quot;)]&apos;))
+logoutButton.click()
+
+var duration = WDS.sampleResult.getTime()
+WDS.log.info(&apos;Submit duration: &apos;.concat(duration))
+if (duration &gt;= WDS.args[2] * 120.0/100.0) {
+    WDS.sampleResult.setResponseMessage(&apos;Failure: submission duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+    WDS.sampleResult.setSuccessful(false)
+}
+else {
+    WDS.sampleResult.setResponseMessage(&apos;Success: submission duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+    WDS.sampleResult.setSuccessful(true)
+}</stringProp>
+          <stringProp name="WebDriverSampler.parameters">${random_stamp} ${think_time} ${import_timeout}</stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree>
+          <com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.FirefoxDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig" testname="jp@gc - Firefox Driver Config" enabled="true">
+            <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+            <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+            <stringProp name="WebDriverConfig.http_host"></stringProp>
+            <intProp name="WebDriverConfig.http_port">8080</intProp>
+            <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+            <stringProp name="WebDriverConfig.https_host"></stringProp>
+            <intProp name="WebDriverConfig.https_port">8080</intProp>
+            <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+            <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+            <stringProp name="WebDriverConfig.socks_host"></stringProp>
+            <intProp name="WebDriverConfig.socks_port">8080</intProp>
+            <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+            <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+            <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+            <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.general.useragent.override.enabled">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.network.negotiate-auth.allow-insecure-ntlm-v1">false</boolProp>
+            <collectionProp name="FirefoxDriverConfig.general.extensions"/>
+            <collectionProp name="FirefoxDriverConfig.general.preferences"/>
+          </com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig>
+          <hashTree/>
+        </hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Release 3 without bots" enabled="true">
+          <stringProp name="WebDriverSampler.script">var pkg = JavaImporter(org.openqa.selenium)
+var support_ui = JavaImporter(org.openqa.selenium.support.ui)
+var lang = JavaImporter(java.lang)
+var conc = JavaImporter(java.util.concurrent)
+
+// important variables
+var testID = &apos;Submission of item without full text I: &apos;.concat(WDS.args[0] + 2)
+var importName = testID
+var thinkTime = WDS.args[1] * 1000;
+
+function think() {
+    lang.Thread.sleep(thinkTime)
+}
+
+WDS.browser.manage().timeouts().implicitlyWait(10, conc.TimeUnit.SECONDS)
+WDS.browser.manage().timeouts().pageLoadTimeout(60, conc.TimeUnit.SECONDS)
+WDS.browser.get(&apos;https://dev.inge.mpdl.mpg.de/pubman&apos;)
+think()
+
+//login
+var usernameBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputUsername&quot;)]&apos;))
+usernameBox.sendKeys(lang.System.getenv(&apos;DEVusername&apos;))
+think()
+
+var passwordBox = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;inputSecretPassword&quot;)]&apos;))
+passwordBox.sendKeys(lang.System.getenv(&apos;DEVpassword&apos;))
+think()
+
+var submit = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogin&quot;)]&apos;))
+submit.click()
+think()
+
+// go to items
+var myItems = WDS.browser.findElement(pkg.By.id(&apos;Header:lnkDepWorkspace&apos;))
+myItems.click()
+think()
+
+// find submission
+var currentImport = null;
+var imports = WDS.browser.findElements(pkg.By.className(&apos;listItem&apos;));
+for (i = 0; i &lt; imports.size(); i++) {
+    var titleLink = imports[i].findElement(pkg.By.tagName(&apos;a&apos;));
+    if (titleLink.getText().equals(importName)) {    			
+        currentImport = imports[i];
+        break;
+    }
+}
+if (currentImport != null)
+    currentImport.findElement(pkg.By.tagName(&apos;a&apos;)).click()
+    
+var releaseButton = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkRelease&quot;)]&apos;))
+releaseButton.click()
+
+var commentBox = WDS.browser.findElement(pkg.By.tagName(&apos;textarea&apos;))
+commentBox.sendKeys(&apos;Load test&apos;)
+think()
+submitButton = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSave&quot;)]&apos;))
+
+WDS.sampleResult.sampleStart()
+submitButton.click()
+WDS.sampleResult.sampleEnd()
+
+var logoutButton = WDS.browser.findElement(pkg.By.xpath(&apos;//input[contains(@id, &quot;lnkLogout&quot;)]&apos;))
+logoutButton.click()
+
+var duration = WDS.sampleResult.getTime()
+WDS.log.info(&apos;Release duration: &apos;.concat(duration))
+if (duration &gt;= WDS.args[2] * 120.0/100.0) {
+    WDS.sampleResult.setSuccessful(false)
+    WDS.sampleResult.setResponseMessage(&apos;Failure: release duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+}
+else {
+    WDS.sampleResult.setSuccessful(true)
+    WDS.sampleResult.setResponseMessage(&apos;Success: release duration: &apos;.concat(WDS.sampleResult.getTime() / 1000.0))
+}</stringProp>
+          <stringProp name="WebDriverSampler.parameters">${random_stamp} ${think_time} ${release_timeout}</stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree>
+          <com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.FirefoxDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig" testname="jp@gc - Firefox Driver Config" enabled="true">
+            <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+            <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+            <stringProp name="WebDriverConfig.http_host"></stringProp>
+            <intProp name="WebDriverConfig.http_port">8080</intProp>
+            <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+            <stringProp name="WebDriverConfig.https_host"></stringProp>
+            <intProp name="WebDriverConfig.https_port">8080</intProp>
+            <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+            <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+            <stringProp name="WebDriverConfig.socks_host"></stringProp>
+            <intProp name="WebDriverConfig.socks_port">8080</intProp>
+            <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+            <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+            <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+            <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.general.useragent.override.enabled">false</boolProp>
+            <boolProp name="FirefoxDriverConfig.network.negotiate-auth.allow-insecure-ntlm-v1">false</boolProp>
+            <collectionProp name="FirefoxDriverConfig.general.extensions"/>
+            <collectionProp name="FirefoxDriverConfig.general.preferences"/>
+          </com.googlecode.jmeter.plugins.webdriver.config.FirefoxDriverConfig>
+          <hashTree/>
+        </hashTree>
+        <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="false">
+          <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="elasticsearch.url" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.url</stringProp>
+                <stringProp name="Argument.value">http://kibana.mpdl.mpg.de:8080</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="elasticsearch.index" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.index</stringProp>
+                <stringProp name="Argument.value">inge</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="elasticsearch.type" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.type</stringProp>
+                <stringProp name="Argument.value">csv</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="elasticsearch.authenticationMethod" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.authenticationMethod</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="elasticsearch.user" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.user</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="elasticsearch.password" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.password</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="timezone.id" elementType="Argument">
+                <stringProp name="Argument.name">timezone.id</stringProp>
+                <stringProp name="Argument.value">GMT</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="result.attributes.excluded" elementType="Argument">
+                <stringProp name="Argument.name">result.attributes.excluded</stringProp>
+                <stringProp name="Argument.value">Latency,ConnectTime,IdleTime,ResponseCode,IsResponseCodeOk,SampleCount,ErrorCount,ContentType,MediaType,DataType,RequestHeaders,ResponseHeaders,HeadersSize,SamplerData,ResponseMessage,ResponseData,BodySize,Bytes</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.url" elementType="Argument">
+                <stringProp name="Argument.name">proxy.url</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.authenticationMethod" elementType="Argument">
+                <stringProp name="Argument.name">proxy.authenticationMethod</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.user" elementType="Argument">
+                <stringProp name="Argument.name">proxy.user</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.password" elementType="Argument">
+                <stringProp name="Argument.name">proxy.password</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.workstation" elementType="Argument">
+                <stringProp name="Argument.name">proxy.workstation</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.domain" elementType="Argument">
+                <stringProp name="Argument.name">proxy.domain</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="experimental.connection.trustAllSslCertificates" elementType="Argument">
+                <stringProp name="Argument.name">experimental.connection.trustAllSslCertificates</stringProp>
+                <stringProp name="Argument.value">false</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="classname">com.doc.jmeter.listeners.elasticsearch.ElasticsearchListener</stringProp>
+        </BackendListener>
+        <hashTree/>
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="Zeige Ergebnisse in der Tabelle" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">\C:\Users\apetrova\Documents\PubMan\Loadtest Phase 0\jmeter_files\results\ingedev_L-001_${__time(dd-mm-yyyy_hhmmss)}.csv</stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+    <WorkBench guiclass="WorkBenchGui" testclass="WorkBench" testname="WorkBench" enabled="true">
+      <boolProp name="WorkBench.save">true</boolProp>
+    </WorkBench>
+    <hashTree/>
+  </hashTree>
+</jmeterTestPlan>
