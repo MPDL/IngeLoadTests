@@ -67,7 +67,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text I: (ball gehirn weg lernen hilfe fingertip) &apos;.concat(WDS.args[0])
+var testID = &apos;Submission (ball gehirn weg lernen hilfe fingertip) &apos;.concat(WDS.args[0])
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -209,7 +209,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text I: (ball gehirn weg lernen hilfe fingertip) &apos;.concat(WDS.args[0])
+var testID = &apos;Submission (ball gehirn weg lernen hilfe fingertip) &apos;.concat(WDS.args[0])
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -313,7 +313,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text II: (ball gehirn weg lernen hilfe grau) &apos;.concat(WDS.args[0])
+var testID = &apos;Submission (ball gehirn weg lernen hilfe grau) &apos;.concat(WDS.args[0] + 1)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -345,9 +345,6 @@ submission.click()
 think()
 var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
 easySubmissionLink.click()
-think()
-var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
-contextLink.click()
 think()
 
 // fill in form (step 1)
@@ -458,7 +455,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text II: (ball gehirn weg lernen hilfe grau) &apos;.concat(WDS.args[0])
+var testID = &apos;Submission (ball gehirn weg lernen hilfe grau) &apos;.concat(WDS.args[0] + 1)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -562,7 +559,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text III: (ball gehirn weg lernen hilfe tief) &apos;.concat(WDS.args[0])
+var testID = &apos;Submission (ball gehirn weg lernen hilfe tief) &apos;.concat(WDS.args[0] + 2)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -594,9 +591,6 @@ submission.click()
 think()
 var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
 easySubmissionLink.click()
-think()
-var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
-contextLink.click()
 think()
 
 // fill in form (step 1)
@@ -707,7 +701,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text III: (ball gehirn weg lernen hilfe tief) &apos;.concat(WDS.args[0])
+var testID = &apos;Submission (ball gehirn weg lernen hilfe tief) &apos;.concat(WDS.args[0] + 2)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -811,7 +805,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text IV: (ball gehirn weg lernen hilfe schulden) &apos;.concat(WDS.args[0])
+var testID = &apos;Submission (ball gehirn weg lernen hilfe schulden) &apos;.concat(WDS.args[0] + 3)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -843,9 +837,6 @@ submission.click()
 think()
 var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
 easySubmissionLink.click()
-think()
-var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
-contextLink.click()
 think()
 
 // fill in form (step 1)
@@ -956,7 +947,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text IV: (ball gehirn weg lernen hilfe schulden) &apos;.concat(WDS.args[0])
+var testID = &apos;Submission (ball gehirn weg lernen hilfe schulden) &apos;.concat(WDS.args[0] + 3)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -1060,7 +1051,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text V: (ball gehirn weg lernen hilfe fenster) &apos;.concat(WDS.args[0])
+var testID = &apos;Submission (ball gehirn weg lernen hilfe fenster) &apos;.concat(WDS.args[0] + 4)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -1092,9 +1083,6 @@ submission.click()
 think()
 var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
 easySubmissionLink.click()
-think()
-var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
-contextLink.click()
 think()
 
 // fill in form (step 1)
@@ -1205,7 +1193,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text V: (ball gehirn weg lernen hilfe fenster) &apos;.concat(WDS.args[0])
+var testID = &apos;Submission (ball gehirn weg lernen hilfe fenster) &apos;.concat(WDS.args[0] + 4)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 

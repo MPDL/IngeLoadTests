@@ -313,7 +313,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text I: (ball gehirn weg lernen hilfe tief schulden)&apos;.concat(WDS.args[0] + 1)
+var testID = &apos;Submission (ball gehirn weg lernen hilfe tief schulden) &apos;.concat(WDS.args[0] + 1)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -455,7 +455,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text I: (ball gehirn weg lernen hilfe tief schulden)&apos;.concat(WDS.args[0] + 1)
+var testID = &apos;Submission (ball gehirn weg lernen hilfe tief schulden) &apos;.concat(WDS.args[0] + 1)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -559,7 +559,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text I: (ball gehirn weg lernen hilfe fenster)&apos;.concat(WDS.args[0] + 2)
+var testID = &apos;Submission (ball gehirn weg lernen hilfe fenster) &apos;.concat(WDS.args[0] + 2)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
@@ -701,7 +701,7 @@ var lang = JavaImporter(java.lang)
 var conc = JavaImporter(java.util.concurrent)
 
 // important variables
-var testID = &apos;Submission of item without full text I: (ball gehirn weg lernen hilfe fenster)&apos;.concat(WDS.args[0] + 2)
+var testID = &apos;Submission (ball gehirn weg lernen hilfe fenster) &apos;.concat(WDS.args[0] + 2)
 var importName = testID
 var thinkTime = WDS.args[1] * 1000;
 
