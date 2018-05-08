@@ -283,7 +283,7 @@
           <stringProp name="filename">\C:\Users\apetrova\Documents\PubMan\Loadtest Phase 0\jmeter_files\results\ingedev_L-005-01_${__time(dd-mm-yyyy_hhmmss)}.csv</stringProp>
         </ResultCollector>
         <hashTree/>
-        <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="false">
+        <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
           <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="elasticsearch.url" elementType="Argument">

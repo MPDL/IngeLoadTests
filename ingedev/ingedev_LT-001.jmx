@@ -100,9 +100,6 @@ think()
 var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
 easySubmissionLink.click()
 think()
-var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
-contextLink.click()
-think()
 
 // fill in form (step 1)
 var dropdown = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:selGenre&apos;))
@@ -147,7 +144,15 @@ var sourceName = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:ea
 sourceName.sendKeys(&apos;Test Book&apos;)
 think()
 
-var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+var saveButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+saveButton.click()
+think()
+var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:lnkSubmit&apos;))
+submitButton.click()
+think()
+var textBox = WDS.browser.findElement(pkg.By.tagName(&apos;textarea&apos;))
+textBox.sendKeys(&apos;Load test&apos;)
+submitButton = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSave&quot;)]&apos;))
 
 WDS.sampleResult.sampleStart()
 submitButton.click()
@@ -337,9 +342,6 @@ think()
 var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
 easySubmissionLink.click()
 think()
-var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
-contextLink.click()
-think()
 
 // fill in form (step 1)
 var dropdown = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:selGenre&apos;))
@@ -384,7 +386,15 @@ var sourceName = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:ea
 sourceName.sendKeys(&apos;Test Book&apos;)
 think()
 
-var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+var saveButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+saveButton.click()
+think()
+var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:lnkSubmit&apos;))
+submitButton.click()
+think()
+var textBox = WDS.browser.findElement(pkg.By.tagName(&apos;textarea&apos;))
+textBox.sendKeys(&apos;Load test&apos;)
+submitButton = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSave&quot;)]&apos;))
 
 WDS.sampleResult.sampleStart()
 submitButton.click()
@@ -574,9 +584,6 @@ think()
 var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
 easySubmissionLink.click()
 think()
-var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
-contextLink.click()
-think()
 
 // fill in form (step 1)
 var dropdown = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:selGenre&apos;))
@@ -621,7 +628,15 @@ var sourceName = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:ea
 sourceName.sendKeys(&apos;Test Book&apos;)
 think()
 
-var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+var saveButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+saveButton.click()
+think()
+var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:lnkSubmit&apos;))
+submitButton.click()
+think()
+var textBox = WDS.browser.findElement(pkg.By.tagName(&apos;textarea&apos;))
+textBox.sendKeys(&apos;Load test&apos;)
+submitButton = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSave&quot;)]&apos;))
 
 WDS.sampleResult.sampleStart()
 submitButton.click()
@@ -811,9 +826,6 @@ think()
 var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
 easySubmissionLink.click()
 think()
-var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
-contextLink.click()
-think()
 
 // fill in form (step 1)
 var dropdown = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:selGenre&apos;))
@@ -858,7 +870,15 @@ var sourceName = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:ea
 sourceName.sendKeys(&apos;Test Book&apos;)
 think()
 
-var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+var saveButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+saveButton.click()
+think()
+var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:lnkSubmit&apos;))
+submitButton.click()
+think()
+var textBox = WDS.browser.findElement(pkg.By.tagName(&apos;textarea&apos;))
+textBox.sendKeys(&apos;Load test&apos;)
+submitButton = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSave&quot;)]&apos;))
 
 WDS.sampleResult.sampleStart()
 submitButton.click()
@@ -1048,9 +1068,6 @@ think()
 var easySubmissionLink = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSubmission_lnkEasySubmission&quot;)]&apos;))
 easySubmissionLink.click()
 think()
-var contextLink = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:CollectionSelection:iterDepositorContextList:0:lnkSelectForEasySubmissionFirst&apos;))
-contextLink.click()
-think()
 
 // fill in form (step 1)
 var dropdown = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep1Manual:selGenre&apos;))
@@ -1095,7 +1112,15 @@ var sourceName = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:ea
 sourceName.sendKeys(&apos;Test Book&apos;)
 think()
 
-var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+var saveButton = WDS.browser.findElement(pkg.By.id(&apos;form1:easySubmission:easySubmissionStep3Manual:lnkSave&apos;))
+saveButton.click()
+think()
+var submitButton = WDS.browser.findElement(pkg.By.id(&apos;form1:lnkSubmit&apos;))
+submitButton.click()
+think()
+var textBox = WDS.browser.findElement(pkg.By.tagName(&apos;textarea&apos;))
+textBox.sendKeys(&apos;Load test&apos;)
+submitButton = WDS.browser.findElement(pkg.By.xpath(&apos;//a[contains(@id, &quot;lnkSave&quot;)]&apos;))
 
 WDS.sampleResult.sampleStart()
 submitButton.click()
@@ -1518,7 +1543,7 @@ else {
         <stringProp name="filename">\C:\Users\apetrova\Documents\PubMan\Loadtest Phase 0\jmeter_files\results\ingedev_LT-001_${__time(dd-mm-yyyy_hhmmss)}.csv</stringProp>
       </ResultCollector>
       <hashTree/>
-      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="false">
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
         <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
           <collectionProp name="Arguments.arguments">
             <elementProp name="elasticsearch.url" elementType="Argument">

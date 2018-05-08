@@ -283,6 +283,89 @@
           <stringProp name="filename">ingeqa_L-005-01_${__time(dd-mm-yyyy_hhmmss)}.csv</stringProp>
         </ResultCollector>
         <hashTree/>
+        <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
+          <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="elasticsearch.url" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.url</stringProp>
+                <stringProp name="Argument.value">http://kibana.mpdl.mpg.de:8080</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="elasticsearch.index" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.index</stringProp>
+                <stringProp name="Argument.value">inge</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="elasticsearch.type" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.type</stringProp>
+                <stringProp name="Argument.value">csv</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="elasticsearch.authenticationMethod" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.authenticationMethod</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="elasticsearch.user" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.user</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="elasticsearch.password" elementType="Argument">
+                <stringProp name="Argument.name">elasticsearch.password</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="timezone.id" elementType="Argument">
+                <stringProp name="Argument.name">timezone.id</stringProp>
+                <stringProp name="Argument.value">GMT</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="result.attributes.excluded" elementType="Argument">
+                <stringProp name="Argument.name">result.attributes.excluded</stringProp>
+                <stringProp name="Argument.value">Latency,ConnectTime,IdleTime,ResponseCode,IsResponseCodeOk,SampleCount,ErrorCount,ContentType,MediaType,DataType,RequestHeaders,ResponseHeaders,HeadersSize,SamplerData,ResponseMessage,ResponseData,BodySize,Bytes</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.url" elementType="Argument">
+                <stringProp name="Argument.name">proxy.url</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.authenticationMethod" elementType="Argument">
+                <stringProp name="Argument.name">proxy.authenticationMethod</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.user" elementType="Argument">
+                <stringProp name="Argument.name">proxy.user</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.password" elementType="Argument">
+                <stringProp name="Argument.name">proxy.password</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.workstation" elementType="Argument">
+                <stringProp name="Argument.name">proxy.workstation</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="proxy.domain" elementType="Argument">
+                <stringProp name="Argument.name">proxy.domain</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="experimental.connection.trustAllSslCertificates" elementType="Argument">
+                <stringProp name="Argument.name">experimental.connection.trustAllSslCertificates</stringProp>
+                <stringProp name="Argument.value">false</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="classname">com.doc.jmeter.listeners.elasticsearch.ElasticsearchListener</stringProp>
+        </BackendListener>
+        <hashTree/>
       </hashTree>
     </hashTree>
     <WorkBench guiclass="WorkBenchGui" testclass="WorkBench" testname="WorkBench" enabled="true">
